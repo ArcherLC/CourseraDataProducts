@@ -1,0 +1,8 @@
+---
+title: "About Me"
+---
+
+- __Name:__ Archer
+- __Ocupation:__ "Data Analytics Program Manager"
+- __Interests:__ Solving real world problems with statistics and data science.
+- __Hobbies:__ Playing music

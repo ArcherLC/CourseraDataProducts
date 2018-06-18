@@ -1,0 +1,47 @@
+---
+title: "R Markdown and Leaflet"
+---
+
+## Introduction
+This is the Coursera's Data Products course week 2 assignment.  In this assignment we have the task to create a leaflet map using an RMarkdown and displaying it in a webpage containing the date when the document was created.  For this assignment I'll be using a sample simulative data set from substances A-D found in different locations in France and it's territories.
+
+``` {r, echo=FALSE, results='hide', message=FALSE}
+'Call leaflet and dplyr packages, load geodata and rename geodata columns'
+library(leaflet)
+library(dplyr)
+set.seed(0617201)
+data <- read.csv("/Users/ArcherJime/Downloads/Archer Folder/Data Science/Data Science Specialization - Coursera/Coursera_DataProducts/Week2_LeafletProject_SampleDataSet.csv", header=TRUE)
+data$Parameter_Name <- as.character(factor(data$Parameter_Name))
+geovars <- c("Parameter_Name", "X_WGS84", "Y_WGS84")
+geodata <- data[geovars]
+geodata <- geodata %>%
+    rename(lng = X_WGS84) %>%
+    rename(lat = Y_WGS84)
+
+```
+
+
+## Leaflet map - June 17, 2018
+``` {r, echo=FALSE, results='hide', messasge=FALSE}
+'Adding multiple PopUps'
+'To add popups, we will be using the geodata s Parameter_Name'
+
+'Add new column'
+geodata$col <- ifelse(geodata$Parameter_Name=="Substance A", "navy", ifelse(geodata$Parameter_Name=="Substance D", "red", ifelse(geodata$Parameter_Name=="Substance B (metabolite)", "dimgrey","green")))
+
+geodata <- geodata %>% 
+    leaflet() %>%
+    addTiles() %>%
+    addCircleMarkers(popup=geodata$Parameter_Name, clusterOptions = markerClusterOptions(), fill=TRUE, color=geodata$col) %>%
+    addLegend(labels = c("Substance A", "Substance B", "Substance C", "Substance D"), colors = c("navy", "dimgrey", "green","red"))
+
+```
+
+``` {r, echo=FALSE}
+geodata
+
+
+```
+
+
+
