@@ -2,6 +2,7 @@
 title: "France Substance Findings Investigation"
 ---
 
+
 ## Introduction
 This is the Coursera's Data Products course week 2 assignment.  In this assignment we have the task to create a leaflet map using an RMarkdown and displaying it in a webpage containing the date when the document was created.  For this assignment I'll be using a sample simulative data set from substances A-D found in different locations in France and it's territories.
 
